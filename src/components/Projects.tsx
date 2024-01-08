@@ -1,28 +1,9 @@
 import React, { useState } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import ProjectCard from "./ProjectCard";
+import { projects as initialProjects } from "../assets/projects.json";
 
 const Projects: React.FC = () => {
-  const initialProjects = [
-    {
-      title: "Project 1",
-      description: "This is project 1",
-      tags: ["data", "machine-learning"],
-    },
-    { title: "Project 2", description: "This is project 2", tags: ["data"] },
-    {
-      title: "Project 3",
-      description: "This is project 3",
-      tags: ["web-development"],
-    },
-    { title: "Project 4", description: "This is project 4", tags: ["data"] },
-    {
-      title: "Project 5",
-      description: "This is project 5",
-      tags: ["web-development"],
-    },
-  ];
-
   const [projects, setProjects] = useState(initialProjects);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
@@ -40,8 +21,8 @@ const Projects: React.FC = () => {
 
   return (
     <section id="projects" className="py-5 mx-5 justify-content-center">
-      <h2 className="text-center mb-4">Projects</h2>
-      <div className="text-center mb-4">
+      <div className="d-flex text-center mb-4">
+        <h2>here's a few project that I've done</h2>
         <DropdownButton title={selectedTag || "All"} variant="outline-primary">
           <Dropdown.Item onClick={() => handleTagFilter(null)}>
             All
@@ -55,7 +36,6 @@ const Projects: React.FC = () => {
           <Dropdown.Item onClick={() => handleTagFilter("web-development")}>
             Web Development
           </Dropdown.Item>
-          {/* Add more Dropdown.Item for other tags */}
         </DropdownButton>
       </div>
       <div className="d-flex flex-wrap justify-content-space-between">

@@ -5,6 +5,7 @@ interface Project {
   title: string;
   description: string;
   tags: string[];
+  link: string;
 }
 
 interface ProjectCardProps {
@@ -22,6 +23,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     setIsModalVisible(false);
   };
 
+  const handleLink = () => {
+    window.open(project.link, "_blank");
+  };
+
   return (
     <>
       <Card className="m-2" style={{ width: "18rem" }} onClick={showModal}>
@@ -34,11 +39,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           ))}
         </Card.Body>
       </Card>
-      <Modal show={isModalVisible} onHide={handleCancel}>
+      <Modal
+        show={isModalVisible}
+        onHide={handleCancel}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
         <Modal.Header closeButton>
           <Modal.Title>{project.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{project.description}</Modal.Body>
+        <Modal.Footer>
+          <button className="btn btn-primary" onClick={handleLink}>
+            See More
+          </button>
+        </Modal.Footer>
       </Modal>
     </>
   );
